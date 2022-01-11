@@ -15,8 +15,8 @@ categories = ["data-structures", "visualization"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-simple_tables-derive = { path = "../derive" }
-simple_tables-core = { path = "../core" }
+simple_tables-core = "0.1.0"
+simple_tables-derive = "0.1.0"
 
 [dev-dependencies]
 trybuild = "1.0.54"
