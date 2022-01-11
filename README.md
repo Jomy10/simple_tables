@@ -1,4 +1,4 @@
-<img src="res/logo.png" style="zoom:25%; display:block; margin-left:auto; margin-right:auto;" />
+<img src="res/logo.png" style="zoom:10%; display:block; margin-left:auto; margin-right:auto;" />
 
 Simple Tables is a rust crate for easily creating table structures. This is made easy using macros.
 
