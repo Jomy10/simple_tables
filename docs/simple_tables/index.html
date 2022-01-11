@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The simple tables crate allows you to easily create table structures."><meta name="keywords" content="rust, rustlang, rust-lang, simple_tables"><title>simple_tables - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../simple_tables/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate simple_tables</h2><div class="block version"><div class="narrow-helper"></div><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all simple_tables's items</p></a><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#traits">Traits</a></li></ul></div><div id="sidebar-vars" data-name="simple_tables" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">simple_tables</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/simple_tables/lib.rs.html#1-95" title="goto source code">[src]</a></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The simple tables crate allows you to easily create table structures.</p>
+<h1 id="getting-started" class="section-header"><a href="#getting-started">Getting started</a></h1>
+<p>You can use the macros <a href="macros/attr.table_row.html"><code>table_row</code></a> and <a href="macros/attr.table.html"><code>table</code></a>
+to make a new table with the row structure defined by your table rows.</p>
+<p><strong>Example</strong></p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>
+<span class="attribute">#[<span class="ident">table_row</span>]</span>
+<span class="kw">struct</span> <span class="ident">MyTableRow</span> {
+  <span class="ident">id</span>: <span class="ident">u32</span>,
+  <span class="ident">name</span>: <span class="ident">String</span>,
+  <span class="ident">email</span>: <span class="ident">String</span>,
+  <span class="ident">address</span>: <span class="ident">String</span>
+}
+
+<span class="attribute">#[<span class="ident">table</span>(<span class="ident">rows</span> <span class="op">=</span> <span class="ident">MyTableRow</span>)]</span>
+<span class="kw">struct</span> <span class="ident">MyTable</span> {}</code></pre></div>
+<h1 id="examples" class="section-header"><a href="#examples">Examples</a></h1><h2 id="printing-out-a-table" class="section-header"><a href="#printing-out-a-table">Printing out a table</a></h2>
+<p>You can use the <code>to_string()</code> method to convert a table to a formatted ASCII table
+and then print it out.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>
+<span class="kw">let</span> <span class="ident">rows</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">MyTableRow</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[
+  <span class="ident">MyTableRow</span>{ <span class="ident">id</span>: <span class="number">0</span>, <span class="ident">name</span>: <span class="string">&quot;David Bowie&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">email</span>: <span class="string">&quot;david@bowie.com&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">address</span>: <span class="string">&quot;England&quot;</span>.<span class="ident">to_string</span>()},
+  <span class="ident">MyTableRow</span>{ <span class="ident">id</span>: <span class="number">1</span>, <span class="ident">name</span>: <span class="string">&quot;David Gilmour&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">email</span>: <span class="string">&quot;david@gilmour.com&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">address</span>: <span class="string">&quot;England&quot;</span>.<span class="ident">to_string</span>()},
+  <span class="ident">MyTableRow</span>{ <span class="ident">id</span>: <span class="number">2</span>, <span class="ident">name</span>: <span class="string">&quot;Opeth&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">email</span>: <span class="string">&quot;info@opeth.com&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">address</span>: <span class="string">&quot;Sweden&quot;</span>.<span class="ident">to_string</span>()},
+  <span class="ident">MyTableRow</span>{ <span class="ident">id</span>: <span class="number">3</span>, <span class="ident">name</span>: <span class="string">&quot;The Beatles&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">email</span>: <span class="string">&quot;info@beatles.com&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">address</span>: <span class="string">&quot;England&quot;</span>.<span class="ident">to_string</span>()}
+];
+
+<span class="kw">let</span> <span class="ident">table</span> <span class="op">=</span> <span class="ident">MyTable::from_vec</span>(<span class="kw-2">&amp;</span><span class="ident">rows</span>);
+<span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">table</span>.<span class="ident">to_string</span>();
+<span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">s</span>);</code></pre></div>
+<p>The output will be:</p>
+<div class="example-wrap"><pre class="language-bash"><code>+----+---------------+-------------------+---------+
+| id | name          | email             | address |
++====+===============+===================+=========+
+| 0  | David Bowie   | david@bowie.com   | England |
++----+---------------+-------------------+---------+
+| 1  | David Gilmour | david@gilmour.com | England |
++----+---------------+-------------------+---------+
+| 2  | Opeth         | info@opeth.com    | Sweden  |
++----+---------------+-------------------+---------+
+| 3  | The Beatles   | info@beatles.com  | England |
++----+---------------+-------------------+---------+</code></pre></div>
+<p>More examples can be found on <a href="github.com/jomy10/simple_tables">GitHub</a>.</p>
+<h1 id="traits" class="section-header"><a href="#traits">Traits</a></h1>
+<ul>
+<li><a href="trait.Table.html">Table</a></li>
+<li><a href="crate:TableRow">TableRow</a></li>
+<li><a href="trait.IdTable.html">IdTable</a></li>
+</ul>
+<h1 id="macros" class="section-header"><a href="#macros">Macros</a></h1>
+<ul>
+<li><a href="macros/attr.table_row.html">table_row</a></li>
+<li><a href="macros/attr.table.html">table</a></li>
+</ul>
+</div></details><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
+<div class="item-table"><div class="item-left"><code>pub extern crate <a class="mod" href="../simple_tables_core/index.html" title="mod simple_tables_core">simple_tables_core</a> as core;</code></div><div class="item-left"><code>pub extern crate <a class="mod" href="../simple_tables_derive/index.html" title="mod simple_tables_derive">simple_tables_derive</a> as derive;</code></div></div><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-left module-item"><a class="mod" href="macros/index.html" title="simple_tables::macros mod">macros</a></div><div class="item-right docblock-short"></div></div><h2 id="traits-1" class="section-header"><a href="#traits-1">Traits</a></h2>
+<div class="item-table"><div class="item-left module-item"><a class="trait" href="trait.IdTable.html" title="simple_tables::IdTable trait">IdTable</a></div><div class="item-right docblock-short"><p>Defines a table with a unique identifier. This class should be implemented alongside the
+<a href="trait.Table.html"><code>Table</code></a> trait.</p>
+</div><div class="item-left module-item"><a class="trait" href="trait.Table.html" title="simple_tables::Table trait">Table</a></div><div class="item-right docblock-short"><p>A table should conform to this trait. <code>Row</code> is the table’s row type.</p>
+</div><div class="item-left module-item"><a class="trait" href="trait.TableRow.html" title="simple_tables::TableRow trait">TableRow</a></div><div class="item-right docblock-short"></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="simple_tables" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+    <script src="../main.js"></script>
+</body></html>
