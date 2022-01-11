@@ -4,7 +4,7 @@
 pub trait TableRow {
     /// Returns a vector containing the names of the fields
     fn get_fields() -> Vec<&'static str>;
-    /// Returns a vecrtor containing the types of the fields
+    /// Returns a vector containing the types of the fields
     fn get_field_types() -> Vec<&'static str>;
     // TODO? add a function to return a map of the fields and their types
     /// Returns the amount of fields in this struct

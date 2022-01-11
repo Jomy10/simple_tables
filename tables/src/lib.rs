@@ -68,11 +68,11 @@
 //! +----+---------------+-------------------+---------+
 //! ```
 //!
-//! More examples can be found on [GitHub](github.com/jomy10/simple_tables).
+//! More examples can be found on [GitHub](https://github.com/jomy10/simple_tables).
 //!
 //! # Traits
 //! - [Table](crate::Table)
-//! - [TableRow](crate:TableRow)
+//! - [TableRow](crate::TableRow)
 //! - [IdTable](crate::IdTable)
 //!
 //! # Macros
