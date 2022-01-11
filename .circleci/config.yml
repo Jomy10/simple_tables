@@ -10,7 +10,7 @@ jobs:
   example-job:
     docker:
       # replace with your preferred image
-      - image: cimg/base:stable
+      - image: cimg/rust:1.50.0
     steps:
       - rust/test:
           with_cache: false 
