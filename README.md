@@ -186,8 +186,6 @@ assert_eq!(vec[1], table_row.clone());
 ## Installing
 Simply add the crate to your `cargo.toml`.
 
-(This crate has not been published yet, please wait for a few minutes...)
-
 ```toml
 [dependencies]
 simple_tables = "0.0.1"
