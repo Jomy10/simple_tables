@@ -193,7 +193,6 @@ Simply add the crate to your `cargo.toml`.
 simple_tables = "0.0.1"
 ```
 
-
 ## Contributing
 Contributions and suggestions are always welcome. 
 
