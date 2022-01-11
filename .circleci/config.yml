@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-working_directory: ./tables
+  working_directory: ./tables
     docker:
       - image: cimg/rust:1.50.0
     steps:
