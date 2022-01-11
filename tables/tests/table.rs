@@ -182,7 +182,7 @@ mod uid {
             }
         }
         
-        #[table(rows = TableRow, uid = "id")]
+        #[table(rows = TableRow)]
         struct ATable {}
         
         impl IdTable<i32, TableRow> for ATable {
@@ -195,27 +195,6 @@ mod uid {
         let table = ATable::from_vec(&vec);
         assert_eq!(vec[1], table.get_row(2).unwrap().clone());
     }
-    
-    #[test]
-    fn uid_is_present() {
-    
-        #[table_row]
-        struct TableRow {
-            id: i32,
-            name: String,
-        }
-        
-    
-        #[table(rows = TableRow, uid = "id")]
-        struct ATable {}
-        
-        assert_eq!("id", ATable::UID);
-    }
-    
-    // TODO
-    //fn uid_is_not_present() {
-    //
-    //}
 }
 
 mod to_string {
