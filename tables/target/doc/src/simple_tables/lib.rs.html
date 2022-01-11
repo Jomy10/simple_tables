@@ -67,61 +67,113 @@
 <span id="67">67</span>
 <span id="68">68</span>
 <span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The simple tables crate allows you to easily create table structures.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! # Examples</span>
-<span class="doccomment">//! TODO: when sort is implemented, remove the &quot;ignore&quot;</span>
-<span class="doccomment">//! ```rust ignore</span>
-<span class="doccomment">//! # use simple_tables::macros::table;</span>
-<span class="doccomment">//! # use simple_tables::macros::table_row;</span>
-<span class="doccomment">//! # use simple_tables::Table;</span>
+<span class="doccomment">//! # Getting started</span>
+<span class="doccomment">//! You can use the macros [`table_row`](crate::macros::table_row) and [`table`](crate::macros::table)</span>
+<span class="doccomment">//! to make a new table with the row structure defined by your table rows.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! **Example**</span>
+<span class="doccomment">//! ```rust</span>
+<span class="doccomment">//! # use simple_tables::macros::{table_row, table};</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! #[table_row]</span>
 <span class="doccomment">//! struct MyTableRow {</span>
-<span class="doccomment">//!     id: u32,</span>
-<span class="doccomment">//!     name: String,</span>
-<span class="doccomment">//!     email: String,</span>
-<span class="doccomment">//!     age: u32</span>
+<span class="doccomment">//!   id: u32,</span>
+<span class="doccomment">//!   name: String,</span>
+<span class="doccomment">//!   email: String,</span>
+<span class="doccomment">//!   address: String</span>
 <span class="doccomment">//! }</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! impl PartialEq&lt;Self&gt; for MyTableRow {</span>
-<span class="doccomment">//!     fn eq(&amp;self, other: &amp;Self) -&gt; bool {</span>
-<span class="doccomment">//!         self.id == other.id</span>
-<span class="doccomment">//!             &amp;&amp; self.name == other.name</span>
-<span class="doccomment">//!             &amp;&amp; self.email == other.email</span>
-<span class="doccomment">//!             &amp;&amp; self.age == other.age</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//!  }</span>
+<span class="doccomment">//! #[table(rows = MyTableRow)]</span>
+<span class="doccomment">//! struct MyTable {}</span>
+<span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! #[table(rows = MyTableRow, uid = &quot;id&quot;)]</span>
-<span class="doccomment">//! struct MyTable {}//!//!</span>
+<span class="doccomment">//! # Examples</span>
+<span class="doccomment">//! ## Printing out a table</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! let mut table: dyn Table&lt;MyTableRow&gt; = MyTable::new();</span>
-<span class="doccomment">//! table.push(MyTableRow { id: 1, name: String::from(&quot;Jimmy Page&quot;), email: String::from(&quot;jimmy@led_zeppelin.com&quot;), age: 77 });</span>
-<span class="doccomment">//! table.insert_top(MyTableRow { id: 2, name: String::from(&quot;David Gilmour&quot;), email: String::from(&quot;david.gilmour@pinkfloyd.com&quot;), age: 75 });</span>
-<span class="doccomment">//! table.insert(1, MyTableRow { id: 3, name: String::from(&quot;Kurt Cobain&quot;), email: String::from(&quot;kurt@nirvana.com&quot;), age: 27 });</span>
-<span class="doccomment">//! table.sort();</span>
+<span class="doccomment">//! You can use the `to_string()` method to convert a table to a formatted ASCII table</span>
+<span class="doccomment">//! and then print it out.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```rust</span>
+<span class="doccomment">//! # use simple_tables::Table;</span>
+<span class="doccomment">//! # use simple_tables::macros::{table_row, table};</span>
+<span class="doccomment">//! #</span>
+<span class="doccomment">//! # #[table_row]</span>
+<span class="doccomment">//! # struct MyTableRow {</span>
+<span class="doccomment">//! #   id: u32,</span>
+<span class="doccomment">//! #   name: String,</span>
+<span class="doccomment">//! #   email: String,</span>
+<span class="doccomment">//! #   address: String</span>
+<span class="doccomment">//! # }</span>
+<span class="doccomment">//! #</span>
+<span class="doccomment">//! # #[table(rows = MyTableRow)]</span>
+<span class="doccomment">//! # struct MyTable {}</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! let rows: Vec&lt;MyTableRow&gt; = vec![</span>
-<span class="doccomment">//!     MyTableRow { id: 1, name: String::from(&quot;Jimmy Page&quot;), email: String::from(&quot;jimmy@led_zeppelin.com&quot;), age: 77 },</span>
-<span class="doccomment">//!     MyTableRow { id: 2, name: String::from(&quot;David Gilmour&quot;), email: String::from(&quot;david.gilmour@pinkfloyd.com&quot;), age: 75 },</span>
-<span class="doccomment">//!     MyTableRow { id: 3, name: String::from(&quot;Kurt Cobain&quot;), email: String::from(&quot;kurt@nirvana.com&quot;), age: 27 }</span>
+<span class="doccomment">//!   MyTableRow{ id: 0, name: &quot;David Bowie&quot;.to_string(), email: &quot;david@bowie.com&quot;.to_string(), address: &quot;England&quot;.to_string()},</span>
+<span class="doccomment">//!   MyTableRow{ id: 1, name: &quot;David Gilmour&quot;.to_string(), email: &quot;david@gilmour.com&quot;.to_string(), address: &quot;England&quot;.to_string()},</span>
+<span class="doccomment">//!   MyTableRow{ id: 2, name: &quot;Opeth&quot;.to_string(), email: &quot;info@opeth.com&quot;.to_string(), address: &quot;Sweden&quot;.to_string()},</span>
+<span class="doccomment">//!   MyTableRow{ id: 3, name: &quot;The Beatles&quot;.to_string(), email: &quot;info@beatles.com&quot;.to_string(), address: &quot;England&quot;.to_string()}</span>
 <span class="doccomment">//! ];</span>
-<span class="doccomment">//! let table2 = MyTable::from_vec(&amp;rows);</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(table.get_rows(), table2.get_rows())</span>
+<span class="doccomment">//! let table = MyTable::from_vec(&amp;rows);</span>
+<span class="doccomment">//! let s = table.to_string();</span>
+<span class="doccomment">//! println!(&quot;{}&quot;, s);</span>
 <span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The output will be:</span>
+<span class="doccomment">//! ```bash</span>
+<span class="doccomment">//! +----+---------------+-------------------+---------+</span>
+<span class="doccomment">//! | id | name          | email             | address |</span>
+<span class="doccomment">//! +====+===============+===================+=========+</span>
+<span class="doccomment">//! | 0  | David Bowie   | david@bowie.com   | England |</span>
+<span class="doccomment">//! +----+---------------+-------------------+---------+</span>
+<span class="doccomment">//! | 1  | David Gilmour | david@gilmour.com | England |</span>
+<span class="doccomment">//! +----+---------------+-------------------+---------+</span>
+<span class="doccomment">//! | 2  | Opeth         | info@opeth.com    | Sweden  |</span>
+<span class="doccomment">//! +----+---------------+-------------------+---------+</span>
+<span class="doccomment">//! | 3  | The Beatles   | info@beatles.com  | England |</span>
+<span class="doccomment">//! +----+---------------+-------------------+---------+</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! More examples can be found on [GitHub](github.com/jomy10/simple_tables).</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Traits</span>
+<span class="doccomment">//! - [Table](crate::Table)</span>
+<span class="doccomment">//! - [TableRow](crate:TableRow)</span>
+<span class="doccomment">//! - [IdTable](crate::IdTable)</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Macros</span>
+<span class="doccomment">//! - [table_row](crate::macros::table_row)</span>
+<span class="doccomment">//! - [table](crate::macros::table)</span>
 
-<span class="comment">// Need to be exported for the macro to use</span>
-<span class="comment">// TODO: give all of these private names (only the ones that will be used by the macro)</span>
-<span class="comment">//       then, re-export individual items with names that make sense inside of this crate</span>
-<span class="comment">//       (so basically: dev names in simple_tables_core and simple_tables_derive and normal names</span>
-<span class="comment">//       re-exported in this crate. That way there will be no conflicts in the macro when importing.</span>
-<span class="comment">// TODO: Test if that will actually work then</span>
-<span class="comment">// TODO: Nieuw idee -&gt; ipv van exports toevoegen in base crate met dev namen: mod in base crate &quot;derive&quot;</span>
-<span class="comment">//       daar in re-exports met de dev namen. Zodat kan gebruikt worden.</span>
-<span class="comment">// TODO: kijken hoe Rust&#39;s standard library #[derive(Debug)] implementeerd</span>
-<span class="comment">//Mss in de plaats in base crate exports toevoegen met de web namen, in een module voor derive, en dan die gebruiken in de derive crate? (Als dat werkt; dan is dat de perfecte oplossing)</span>
 
 <span class="comment">// Core libraries</span>
 <span class="kw">pub</span> <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">simple_tables_core</span> <span class="kw">as</span> <span class="ident">core</span>;

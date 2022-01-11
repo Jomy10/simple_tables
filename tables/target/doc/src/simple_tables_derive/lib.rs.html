@@ -303,90 +303,6 @@
 <span id="303">303</span>
 <span id="304">304</span>
 <span id="305">305</span>
-<span id="306">306</span>
-<span id="307">307</span>
-<span id="308">308</span>
-<span id="309">309</span>
-<span id="310">310</span>
-<span id="311">311</span>
-<span id="312">312</span>
-<span id="313">313</span>
-<span id="314">314</span>
-<span id="315">315</span>
-<span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
-<span id="319">319</span>
-<span id="320">320</span>
-<span id="321">321</span>
-<span id="322">322</span>
-<span id="323">323</span>
-<span id="324">324</span>
-<span id="325">325</span>
-<span id="326">326</span>
-<span id="327">327</span>
-<span id="328">328</span>
-<span id="329">329</span>
-<span id="330">330</span>
-<span id="331">331</span>
-<span id="332">332</span>
-<span id="333">333</span>
-<span id="334">334</span>
-<span id="335">335</span>
-<span id="336">336</span>
-<span id="337">337</span>
-<span id="338">338</span>
-<span id="339">339</span>
-<span id="340">340</span>
-<span id="341">341</span>
-<span id="342">342</span>
-<span id="343">343</span>
-<span id="344">344</span>
-<span id="345">345</span>
-<span id="346">346</span>
-<span id="347">347</span>
-<span id="348">348</span>
-<span id="349">349</span>
-<span id="350">350</span>
-<span id="351">351</span>
-<span id="352">352</span>
-<span id="353">353</span>
-<span id="354">354</span>
-<span id="355">355</span>
-<span id="356">356</span>
-<span id="357">357</span>
-<span id="358">358</span>
-<span id="359">359</span>
-<span id="360">360</span>
-<span id="361">361</span>
-<span id="362">362</span>
-<span id="363">363</span>
-<span id="364">364</span>
-<span id="365">365</span>
-<span id="366">366</span>
-<span id="367">367</span>
-<span id="368">368</span>
-<span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
 </pre><pre class="rust"><code><span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">proc_macro</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">proc_macro2</span>;
 <span class="comment">// Parsing rust code</span>
@@ -396,17 +312,11 @@
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">quote</span>;
 
 <span class="kw">use</span> <span class="ident">proc_macro::TokenStream</span>;
-<span class="kw">use</span> <span class="ident">std::any::Any</span>;
-<span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
-<span class="kw">use</span> <span class="ident">std::fmt::Debug</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">DataStruct</span>, <span class="ident">DeriveInput</span>, <span class="ident">ItemStruct</span>, <span class="ident">parse_macro_input</span>, <span class="ident">parse_quote</span>};
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">ItemStruct</span>, <span class="ident">parse_macro_input</span>};
 <span class="kw">use</span> <span class="ident">syn::parse::Parser</span>;
-<span class="kw">use</span> <span class="ident">syn::token::Struct</span>;
 <span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="ident">Ident</span> <span class="kw">as</span> <span class="ident">Ident2</span>, <span class="ident">TokenStream</span> <span class="kw">as</span> <span class="ident">TokenStream2</span>};
 <span class="kw">use</span> <span class="ident">quote::ToTokens</span>;
 
-<span class="comment">// TODO: check out https://docs.rs/proc_macro_roids/latest/proc_macro_roids/</span>
-<span class="comment">// TODO: store column types as well</span>
 <span class="doccomment">/// Initialises a struct to be used as a TableRow so it can be used as an entry inside of a</span>
 <span class="doccomment">/// [Table](simple_tables_core::Table)</span>
 <span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
@@ -450,34 +360,6 @@
     <span class="kw">let</span> <span class="ident">field_types_strings</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">field_types</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">to_token_stream</span>().<span class="ident">to_string</span>()).<span class="ident">collect</span>();
     
     <span class="kw">let</span> <span class="ident">field_len</span> <span class="op">=</span> <span class="ident">fields</span>.<span class="ident">iter</span>().<span class="ident">count</span>();
-    <span class="comment">/*
-    // let input2: proc_macro2::TokenStream = input.clone().into();
-    
-    // let tokens = input2.clone();
-    // Loop over the tokens in the input, if it contains struct, stop executing
-    // &amp; is_struct will be Some, None otherwise
-    // let is_struct: &amp;Option&lt;()&gt; = &amp;tokens.into_iter().find_map(|token| {
-    //     match token {
-    //         proc_macro2::TokenTree::Ident(ident) =&gt; {
-    //             if ident.to_string().contains(&quot;struct&quot;) {
-    //                 Some(())
-    //             } else {
-    //                 None
-    //             }
-    //         },
-    //         _ =&gt; None
-    //     }
-    // });
-    // if is_struct.is_none() {
-    //     panic!(&quot;The table_row macro can only be applied to structs&quot;);
-    // }
-    
-    // Get field types
-    
-    
-    // let _item_struct: ItemStruct = parse_macro_input!(input as ItemStruct);
-    // let struct_name = _item_struct.ident;
-    */</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">get_field_str_elements</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">proc_macro2::TokenStream</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
     <span class="kw">for</span> <span class="ident">ident_field</span> <span class="kw">in</span> <span class="ident">ident_fields</span> {
         <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="ident">ident_field</span>.<span class="number">0</span>;
@@ -519,7 +401,7 @@
     )
 }
 
-<span class="doccomment">/// Initialises a struct to be a Table that holds information about a [table row](crate::table_row).</span>
+<span class="doccomment">/// Initialises a struct to be a Table that holds information about a [table row](macro@crate::table_row).</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Examples</span>
 <span class="doccomment">/// ```rust</span>
@@ -535,7 +417,7 @@
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">table</span>(<span class="ident">attrs</span>: <span class="ident">TokenStream</span>, <span class="ident">input</span>: <span class="ident">TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">item_struct</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">ItemStruct</span>); <span class="comment">// No need to check for struct type</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">item_struct</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">ItemStruct</span>);
     
     <span class="comment">// parse the attributes</span>
     <span class="comment">// # Attributes:</span>
@@ -545,7 +427,6 @@
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">table_row_struct</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ident2</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">uid_field_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
     <span class="ident">attrs</span>.<span class="ident">into_iter</span>().<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">token</span><span class="op">|</span> {
-        <span class="comment">// println!(&quot;Token: {}&quot;, token);</span>
         <span class="kw">match</span> <span class="ident">token</span> {
             <span class="comment">// https://doc.rust-lang.org/proc_macro/enum.TokenTree.html</span>
             <span class="ident">proc_macro::TokenTree::Group</span>(<span class="ident">group</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;Unexpected attribute: {}&quot;</span>, <span class="ident">group</span>),
@@ -556,7 +437,6 @@
                     <span class="ident">val</span> <span class="op">=</span><span class="op">&gt;</span> {
                         <span class="kw">if</span> <span class="ident">current_attr</span> <span class="op">=</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="string">&quot;rows&quot;</span>) {
                             <span class="ident">table_row_struct</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Ident2::new</span>(<span class="ident">val</span>, <span class="ident">proc_macro2::Span::call_site</span>()));
-                            <span class="comment">// println!(&quot;Table row struct: {:?}&quot;, table_row_struct)</span>
                         }  <span class="kw">else</span> {
                             <span class="macro">panic!</span>(<span class="string">&quot;Unexpected token: {}&quot;</span>, <span class="ident">val</span>);
                         }
@@ -598,13 +478,10 @@
         }
         
         <span class="kw">let</span> <span class="ident">uid_code</span>: <span class="ident">TokenStream2</span>;
-        <span class="kw">let</span> <span class="ident">impl_id_table</span>: <span class="ident">TokenStream2</span>;
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">uid</span>) <span class="op">=</span> <span class="ident">uid_field_name</span> {
-            <span class="kw">let</span> <span class="ident">uid_ident</span> <span class="op">=</span> <span class="ident">Ident2::new</span>(<span class="kw-2">&amp;</span><span class="ident">uid</span>, <span class="ident">proc_macro2::Span::call_site</span>()); <span class="comment">// the name of the uid field</span>
             <span class="ident">uid_code</span> <span class="op">=</span> <span class="macro">quote!</span>(<span class="kw">const</span> <span class="ident">UID</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> #<span class="ident">uid</span>;);
         } <span class="kw">else</span> {
             <span class="ident">uid_code</span> <span class="op">=</span> <span class="macro">quote!</span>();
-            <span class="ident">impl_id_table</span> <span class="op">=</span> <span class="macro">quote!</span>()
         }
         
         <span class="kw">let</span> <span class="ident">impl_to_string</span> <span class="op">=</span> <span class="macro">quote!</span>(
@@ -612,7 +489,6 @@
                 <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
                     <span class="comment">// The names of the fields</span>
                     <span class="kw">let</span> <span class="ident">field_names</span> <span class="op">=</span> <span class="ident">dev_simple_tables_core_table_row_type::get_fields</span>();
-                    <span class="comment">//println!(&quot;Field names: {:?}&quot;, field_names)</span>
                     <span class="comment">// All cells</span>
                     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">row_values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
                     <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rows</span> {
@@ -681,8 +557,6 @@
             }
         );
         
-        <span class="comment">// println!(&quot;Item_struct: {:?}&quot;, item_struct);</span>
-    
         <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="macro">quote!</span> (
             <span class="attribute">#[<span class="ident">automatically_derived</span>]</span>
             #<span class="ident">item_struct</span>
@@ -721,24 +595,9 @@
                 <span class="kw">fn</span> <span class="ident">insert</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>, <span class="ident">row</span>: #<span class="ident">table_row_struct</span>) {
                     <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">insert</span>(<span class="ident">i</span>, <span class="ident">row</span>);
                 }
-                
-                <span class="comment">// fn get_column&lt;S&gt;(&amp;self, column: &amp;str) -&gt; Option&lt;Vec&lt;S&gt; {</span>
-                <span class="comment">//     if #table_row_struct::FIELDS.contains(column) {</span>
-                <span class="comment">//         let column: Vec&lt;S&gt; = self.rows.iter().map(|row| {</span>
-                <span class="comment">//             row.#column</span>
-                <span class="comment">//         });</span>
-                <span class="comment">//         return Some(column);</span>
-                <span class="comment">//     } else {</span>
-                <span class="comment">//         return None;</span>
-                <span class="comment">//     }</span>
-                <span class="comment">// }</span>
-                
-                <span class="comment">// #impl_id_table</span>
             }
             
             #<span class="ident">impl_to_string</span>
-            
-            <span class="comment">// TODO: impl to_string and fmt (Debug), also for the TableRow</span>
         );
     
         <span class="ident">TokenStream::from</span>(<span class="ident">output</span>)
@@ -746,33 +605,6 @@
         <span class="macro">panic!</span>(<span class="string">&quot;Please specify a struct to use as the data type for the table rows. \
         e.g. `#[table(rows = TableRowStruct)]`. Refer to the `table` macro documentation for more info.&quot;</span>)
     }
-}
-
-<span class="attribute">#[<span class="ident">deprecated</span>]</span>
-<span class="attribute">#[<span class="ident">proc_macro_attribute</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_field</span>(<span class="ident">args</span>: <span class="ident">TokenStream</span>, <span class="ident">item</span>: <span class="ident">TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">item_struct</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">item</span> <span class="kw">as</span> <span class="ident">ItemStruct</span>);
-    <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="macro">parse_macro_input!</span>(<span class="ident">args</span> <span class="kw">as</span> <span class="ident">syn::parse::Nothing</span>);
-    <span class="kw">let</span> <span class="ident">fields_to_add</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="macro">quote!</span>(<span class="ident">field</span>: <span class="ident">i8</span>)];
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">item_struct</span>.<span class="ident">ident</span>;
-    <span class="kw">if</span> <span class="kw">let</span> <span class="ident">syn::Fields::Named</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">fields</span>) <span class="op">=</span> <span class="ident">item_struct</span>.<span class="ident">fields</span> {
-        <span class="kw">for</span> <span class="ident">f</span> <span class="kw">in</span> <span class="ident">fields_to_add</span> {
-            <span class="ident">fields</span>.<span class="ident">named</span>.<span class="ident">push</span>(
-                <span class="ident">syn::Field::parse_named</span>
-                    .<span class="ident">parse2</span>(<span class="ident">f</span>)
-                    .<span class="ident">unwrap</span>(),
-            );
-        }
-    }
-    
-    <span class="kw">return</span> <span class="macro">quote!</span> {
-        #<span class="ident">item_struct</span>
-        <span class="kw">impl</span> #<span class="ident">name</span> {
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print_field</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-                <span class="macro">println!</span>(<span class="string">&quot;Struct has field equal to {}&quot;</span> , <span class="self">self</span>.<span class="ident">field</span>);
-            }
-        }
-    }.<span class="ident">into</span>();
 }
 
 <span class="comment">// https://mbuffett.com/posts/incomplete-macro-walkthrough/</span></code></pre></div>

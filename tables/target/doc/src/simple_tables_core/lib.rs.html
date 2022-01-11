@@ -199,12 +199,7 @@
 <span id="199">199</span>
 <span id="200">200</span>
 <span id="201">201</span>
-<span id="202">202</span>
-<span id="203">203</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Simple Tables Core</span>
-
-<span class="kw">use</span> <span class="ident">std::any</span>::{<span class="ident">Any</span>, <span class="ident">TypeId</span>};
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Display</span>, <span class="ident">Formatter</span>};
 
 <span class="comment">// Trait</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TableRow</span> {
@@ -325,6 +320,8 @@
     <span class="kw">fn</span> <span class="ident">column_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> { <span class="ident">Row::field_count</span>() }
     <span class="kw">fn</span> <span class="ident">row_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> { <span class="self">self</span>.<span class="ident">get_rows</span>().<span class="ident">len</span>() }
 }
+<span class="comment">// TODO: implement IntoIter for Table</span>
+
 <span class="doccomment">/// Defines a table with a unique identifier. This class should be implemented alongside the</span>
 <span class="doccomment">/// [`Table`](crate::Table) trait.</span>
 <span class="doccomment">///</span>
@@ -390,7 +387,6 @@
     <span class="comment">// /// if there is no `uid` set</span>
     <span class="comment">// fn sort(&amp;mut self);</span>
 }
-<span class="comment">// TODO: implement IntoIter for Table</span>
 
 <span class="kw">fn</span> <span class="ident">get_size</span><span class="op">&lt;</span><span class="ident">Type</span>: <span class="ident">ToString</span><span class="op">&gt;</span>(<span class="ident">var</span>: <span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
     <span class="comment">// let type_id = var.type_id();</span>
