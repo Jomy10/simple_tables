@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["proc_macro2","quote","simple_tables","simple_tables_core","simple_tables_derive","syn","unicode_xid"];

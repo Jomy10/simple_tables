@@ -201,7 +201,7 @@ If you know how to improve the crate just let me know.
 You can also claim one of the issues in the issues tab.
 
 ## Documentation
-The documentation can be found [here](#coming-soon).
+The documentation can be found [here](https://jomy10.github.io/simple_tables/simple_tables/index.html).
 
 ## License
 This crate is licensed under the MIT License. Details in the [LICENSE](LICENSE) file.
