@@ -14,8 +14,8 @@ jobs:
     steps:
       - rust/test:
           with_cache: false 
-          working_directory: tables 
-          package: simple_tables 
+          # working_directory: 
+          # package: simple_tables 
 
 workflows:
   example-workflow:
