@@ -187,7 +187,7 @@ Simply add the crate to your `cargo.toml`.
 
 ```toml
 [dependencies]
-simple_tables = "0.0.1"
+simple_tables = "0.1.1"
 ```
 
 You can see the crate on [crates.io](https://crates.io/crates/simple_tables)
