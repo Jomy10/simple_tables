@@ -13,7 +13,7 @@ derive/private_readme.md
 # Tables module
 tables/target
 tables/tables.iml
-!tables/target/doc
+tables/README.md
 
 # OS files
 .DS_Store

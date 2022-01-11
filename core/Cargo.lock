@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "simple-tables-core"
+name = "simple_tables-core"
 version = "0.1.0"

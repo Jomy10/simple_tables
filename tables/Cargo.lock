@@ -76,25 +76,25 @@ dependencies = [
 ]
 
 [[package]]
-name = "simple-tables"
+name = "simple_tables"
 version = "0.1.0"
 dependencies = [
- "simple-tables-core",
- "simple-tables-derive",
+ "simple_tables-core",
+ "simple_tables-derive",
  "trybuild",
 ]
 
 [[package]]
-name = "simple-tables-core"
+name = "simple_tables-core"
 version = "0.1.0"
 
 [[package]]
-name = "simple-tables-derive"
+name = "simple_tables-derive"
 version = "0.1.0"
 dependencies = [
  "proc-macro2",
  "quote",
- "simple-tables-core",
+ "simple_tables-core",
  "syn",
 ]
 

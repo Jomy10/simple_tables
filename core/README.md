@@ -1,0 +1,1 @@
+This crate is used in the [simple_tables](https://github.com/Jomy10/simple_tables) crate
