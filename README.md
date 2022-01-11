@@ -162,6 +162,9 @@ impl IdTable<u32, MyTableRow> for MyTable {
 }
 ```
 
+**NOTE**: If your IDE complains saying `the trait bound MyTable: Table<MyTableRow> is not satisfied`, you can simply 
+ignore this. The `Table` trait is implemented in the `table` macro, but your IDE just doesn't know this.
+
 #### Getting a row based on the uid
 
 You can get a row that matches the uid using the `get_row()` function.
@@ -183,10 +186,13 @@ assert_eq!(vec[1], table_row.clone());
 ## Installing
 Simply add the crate to your `cargo.toml`.
 
+(This crate has not been published yet, please wait for a few minutes...)
+
 ```toml
 [dependencies]
 simple_tables = "0.0.1"
 ```
+
 
 ## Contributing
 Contributions and suggestions are always welcome. 
