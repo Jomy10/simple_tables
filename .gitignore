@@ -1,0 +1,27 @@
+# Ide
+.idea
+
+# Core modules
+core/target
+core/core.iml
+
+# Derive module
+derive/target
+derive/derive.iml
+derive/private_readme.md
+
+# Tables module
+tables/target
+tables/tables.iml
+!tables/target/doc
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ethumbs.db
+Thumbs.db
+
+TODO.md
