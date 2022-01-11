@@ -151,7 +151,7 @@ pub trait IdTable<UidType: PartialEq, Row: TableRow>: Table<Row> {
     ///     name: String
     /// }
     ///
-    /// #[table(rows = MyTableRow, uid = "id")]
+    /// #[table(rows = MyTableRow)]
     /// struct MyTable {}
     ///
     /// impl simple_tables::IdTable<i32, MyTableRow> for MyTable {

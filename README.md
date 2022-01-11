@@ -147,8 +147,7 @@ struct MyTableRow {
   name: String
 }
 
-// Insert the field's name in the `uid` section
-#[table(rows = MyTableRow, uid = "id")]
+#[table(rows = MyTableRow)]
 struct MyTable {}
 
 // When you need a table with rows containing uid's, you will have to manually implement the 
@@ -190,6 +189,8 @@ Simply add the crate to your `cargo.toml`.
 [dependencies]
 simple_tables = "0.0.1"
 ```
+
+You can see the crate on [crates.io](https://crates.io/crates/simple_tables)
 
 ## Contributing
 Contributions and suggestions are always welcome. 
