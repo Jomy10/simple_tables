@@ -1,1 +1,0 @@
-initSidebarItems({"externcrate":[["core",""],["derive",""]],"mod":[["macros",""]],"trait":[["IdTable","Defines a table with a unique identifier. This class should be implemented alongside the `Table` trait."],["Table","A table should conform to this trait. `Row` is the table’s row type."],["TableRow",""]]});
