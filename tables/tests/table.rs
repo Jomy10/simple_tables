@@ -166,7 +166,6 @@ mod uid {
     use simple_tables::macros::table;
     use simple_tables::macros::table_row;
     use simple_tables::core::Table;
-    use simple_tables_core::IdTable;
     
     #[test]
     fn get_row() {

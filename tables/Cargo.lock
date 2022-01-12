@@ -77,7 +77,7 @@ dependencies = [
 
 [[package]]
 name = "simple_tables"
-version = "0.1.1"
+version = "0.2.0"
 dependencies = [
  "simple_tables-core",
  "simple_tables-derive",
@@ -86,11 +86,15 @@ dependencies = [
 
 [[package]]
 name = "simple_tables-core"
-version = "0.1.1"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d12bfb2b168775de25d6ebbe5612f39d550ec125c677b91ec8c6c2da2d7e6a20"
 
 [[package]]
 name = "simple_tables-derive"
-version = "0.1.1"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e78694d99ddb9eb7521e15eec01ae94e7a639fb682d0d2b19954c7e015d86c67"
 dependencies = [
  "proc-macro2",
  "quote",
