@@ -49,6 +49,15 @@ struct MyTable {}
 
 These macros will implement the `TableRow` and `Table` trait respectively. You could also implement these manually.
 
+In IntelliJ at least, your IDE won't show code completion for all the implemented methods, because it does not know
+these traits are implemented. To fix this, you can create a table like the following:
+```rust
+let my_table: dyn Table<MyTableRow> = MyTable::new();
+```
+
+Adding the `dyn Table<MyTableRow>` type annotation will let the analyzer know that you are creating a new table, which
+implements the Table trait.
+
 ### Functions
 The traits `TableRow` and `Table` define a collection a functions, most of them with default implementations. Using the
 `table_row` and `table` macros will implement these traits and their respective functions for the struct you are targetting.
