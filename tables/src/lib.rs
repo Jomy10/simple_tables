@@ -23,7 +23,7 @@
 //! # Examples
 //! ## Printing out a table
 //!
-//! You can use the `to_string()` method to convert a table to a formatted ASCII table
+//! You can use the `to_string()` method to convert a table to a formatted text table
 //! and then print it out.
 //!
 //! ```rust
