@@ -8,8 +8,8 @@ jobs:
     steps:
       - checkout:
             path: ~/simple_tables
-      - run: find .
-      - run: cargo --version
+#      - run: find .
+#      - run: cargo --version
       - run:
           name: Run Tests
           command: "cargo test"

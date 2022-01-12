@@ -1,5 +1,11 @@
 <img src="res/logo.png" style="display:block; margin-left:auto; margin-right:auto; width:500px; " />
 
+![CirlceCI](https://img.shields.io/circleci/build/github/Jomy10/simple_tables)
+![Language](https://img.shields.io/github/languages/top/Jomy10/simple_tables)
+![Licenses](https://img.shields.io/crates/l/simple_tables)
+![Crates.io](https://img.shields.io/crates/v/simple_tables)
+![Docs.rs](https://img.shields.io/docsrs/simple_tables)
+
 Simple Tables is a rust crate for easily creating table structures. This is made easy using macros.
 
 ## Table of Contents
@@ -198,6 +204,10 @@ Contributions and suggestions are always welcome.
 If you know how to improve the crate just let me know.
 
 You can also claim one of the issues in the issues tab.
+
+When you contribute, make sure your commit passes the tests. You can run the tests by going into the tables directory
+`cd tables` and then running the tests with `cargo test`. I also have a CircleCI set up for this
+repository that will test all commits. If you add a new feature, make sure to also write a test for this feature.
 
 ## Documentation
 The documentation can be found [here](https://jomy10.github.io/simple_tables/simple_tables/index.html).
