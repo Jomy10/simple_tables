@@ -176,10 +176,11 @@ pub trait IdTable<UidType: PartialEq, Row: TableRow>: Table<Row> {
         val
     }
     
+    /// Returns a mutable reference to a row
     fn get_row_mut(&mut self, uid: UidType) -> Option<&mut Row> {
-        let val: Option<&mut Row> = self.get_rows_mut().iter().find_map(|mut row| {
+        let val: Option<&mut Row> = self.get_rows_mut().iter_mut().find_map(|row| {
             if Self::get_id_from_row(row) == uid {
-                Some(&mut row)
+                Some(row)
             }  else {
                 None
             }
