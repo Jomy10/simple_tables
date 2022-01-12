@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: cimg/rust:1.50.0
     steps:
-      - checkout
+      - checkout:
             path: ~/simple_tables
       - run: find .
       - run: cargo --version
