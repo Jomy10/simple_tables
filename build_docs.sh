@@ -11,4 +11,4 @@ cp -r tables/target/doc docs
 echo "Copying index.html..."
 cp res/index.html docs/index.html
 
-echo "Building docs complete"
+echo "Building docs complete."

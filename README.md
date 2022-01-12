@@ -1,7 +1,7 @@
 <img src="res/logo.png" style="display:block; margin-left:auto; margin-right:auto; width:500px; " />
 
 [![CirlceCI](https://img.shields.io/circleci/build/github/Jomy10/simple_tables)](https://app.circleci.com/pipelines/github/Jomy10/simple_tables?branch=master)
-![Language](https://img.shields.io/github/languages/top/Jomy10/simple_tables)
+![Language](https://img.shields.io/badge/lang-Rust-B7410E)
 [![Licenses](https://img.shields.io/crates/l/simple_tables)](#license)
 [![Crates.io](https://img.shields.io/crates/v/simple_tables)](https://crates.io/crates/simple_tables)
 [![Docs.rs](https://img.shields.io/docsrs/simple_tables)](https://docs.rs/simple_tables/0.1.1/simple_tables/)
@@ -188,7 +188,7 @@ let table_row = table.get_row(2).unwrap();
 assert_eq!(vec[1], table_row.clone());
 ```
 
-You can also get a row mutably using its uid using the `get_row_mut(index)` method.
+You can also get a row mutably using its uid using the `get_row_mut(id)` method.
 
 **Example**
 ```rust

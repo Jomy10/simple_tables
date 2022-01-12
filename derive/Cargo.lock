@@ -22,9 +22,9 @@ dependencies = [
 
 [[package]]
 name = "simple_tables-core"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d12bfb2b168775de25d6ebbe5612f39d550ec125c677b91ec8c6c2da2d7e6a20"
+checksum = "28d0329dd00bd82ad6922c0bf168730aa2bc0b767fe163600e0c47fefca1a0f4"
 
 [[package]]
 name = "simple_tables-derive"

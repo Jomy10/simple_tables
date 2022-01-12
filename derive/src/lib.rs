@@ -200,8 +200,6 @@ pub fn table(attrs: TokenStream, input: TokenStream) -> TokenStream {
                         });
                     });
                     
-                    println!("Column sizes: {:?}", column_sizes);
-                    
                     let mut top_line: String = String::from("+-");
                     let mut headers: String = String::from("| ");
                     let mut bottom_line: String = String::from("+=");
@@ -211,7 +209,6 @@ pub fn table(attrs: TokenStream, input: TokenStream) -> TokenStream {
                         let mut local_col_size = col_size.clone();
                         let field_name = field_names[col];
                         let field_len = field_name.chars().count();
-                        println!("Col_size: {} - Field_len: {}", col_size, field_len);
                         // Hanlde case when cells are smaller than the title
                         let left_over = if field_len > local_col_size {
                             local_col_size = field_len;
