@@ -176,6 +176,18 @@ pub trait IdTable<UidType: PartialEq, Row: TableRow>: Table<Row> {
         val
     }
     
+    fn get_row_mut(&mut self, uid: UidType) -> Option<&mut Row> {
+        let val: Option<&mut Row> = self.get_rows_mut().iter().find_map(|mut row| {
+            if Self::get_id_from_row(row) == uid {
+                Some(&mut row)
+            }  else {
+                None
+            }
+        });
+    
+        val
+    }
+    
     // TODO
     // /// Searches through the sorted rows using the uid. Only works if the rows have been sorted first,
     // /// the [`sort`](table_rows::core::Table::sort) function can help with this.
