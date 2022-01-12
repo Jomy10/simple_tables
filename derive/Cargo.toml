@@ -1,6 +1,6 @@
 [package]
 name = "simple_tables-derive"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 description = "Contains the procedural macros for the simple_tables crate"
 license = "MIT OR Apache-2.0"
@@ -21,4 +21,4 @@ proc-macro = true
 syn = { version = "1.0.84", features = [ "full" ] }
 quote = "1.0.14"
 proc-macro2 = "1.0.36"
-simple_tables-core = { path = "../core" }
+simple_tables-core = "0.2.0"
