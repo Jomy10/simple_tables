@@ -18,5 +18,5 @@ categories = ["data-structures", "visualization"]
 simple_tables-core = "0.2.1"
 simple_tables-derive = "0.2.1"
 
-[dev-dependencies]
-trybuild = "1.0.54"
+# [dev-dependencies]
+# trybuild = "1.0.54"

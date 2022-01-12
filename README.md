@@ -24,6 +24,7 @@ Simple Tables is a rust crate for easily creating table structures. This is made
 - [Installing](#installing)
 - [Contributing](#contributing)
 - [Documentation](#documentation)
+- [Use cases](#use-cases)
 - [License](#license)
 
 ## Overview
@@ -236,6 +237,125 @@ The documentation can be found [here](https://jomy10.github.io/simple_tables/sim
 
 It is also available on [docs.rs](https://docs.rs/simple_tables/0.1.1/simple_tables/), here you can also find 
 documentation of previous versions.
+
+## Use cases
+This project started because I was working on an application that retrieved data from an SQL database. After making a
+debug representation of my table, I thought that it might be a good idea to make this more generic, and so I started
+working on this crate.
+
+Here's a snippet if you are interested:
+```rust
+use mysql::PooledConn;
+use mysql::prelude::Queryable;
+use simple_tables::{IdTable, Table};
+use simple_tables::macros::*;
+
+#[table_row]
+pub struct DatabaseEntry {
+    id: u32,
+    name: String,
+    year: u32,
+    ban_id: u32,
+    ban: String,
+    emails: Emails
+}
+
+#[table(rows = DatabaseEntry)]
+pub struct Database {}
+
+impl IdTable<u32, DatabaseEntry> for Database {
+  fn get_id_from_row(row: &DatabaseEntry) -> u32 {
+    row.id
+  }
+}
+
+impl Database {
+  pub fn fetch(conn: &mut PooledConn) -> Database {
+    let mut database: Database = Database::new();
+
+    let query = "\
+        SELECT Users.User_Id as id, Users.Name as name, Years.Year_Id as year, Bannen.Ban_Id as ban_id, Bannen.Naam as ban, Emails.Email as email FROM Users \
+        INNER JOIN Years ON Users.Year_Id = Years.Year_Id \
+        INNER JOIN Bannen ON Years.Ban_Id = Bannen.Ban_Id \
+        LEFT JOIN Emails ON Emails.Email_Id = Users.User_Id\
+        ";
+
+    conn.query_iter(query)
+            .unwrap()
+            .for_each(|row| {
+              let (user_id, name, years_id, ban_id, ban_naam, email):
+                      (u32, String, u32, u32, String, Option<String>)
+                      = mysql::from_row(row.unwrap());
+              if let Some(email) = email {
+                if let Some(entry) = database.get_row_mut(user_id) {
+                  entry.emails.push(email);
+                } else {
+                  // Create new entry
+                  database.push(
+                    DatabaseEntry {
+                      id: user_id,
+                      name,
+                      year: years_id,
+                      ban_id,
+                      ban: ban_naam,
+                      emails: Emails { emails: Some(vec![email]) }
+                    }
+                  );
+                }
+              } else {
+                // Create new entry
+                database.push(
+                  DatabaseEntry {
+                    id: user_id,
+                    name,
+                    year: years_id,
+                    ban_id,
+                    ban: ban_naam,
+                    emails: if email.is_some() { Emails { emails: Some(vec![email.unwrap()]) } } else { Emails { emails: None } }
+                  }
+                );
+              }
+
+            });
+
+    database
+  }
+}
+
+#[derive(Clone, Debug)]
+pub struct Emails {
+  emails: Option<Vec<String>>
+}
+
+impl Emails {
+  fn push(&mut self, s: String) {
+    if let Some(ref mut v) = self.emails {
+      v.push(s);
+    }
+  }
+}
+
+impl ToString for Emails {
+  fn to_string(&self) -> String {
+    let mut s = String::new();
+    if self.emails.is_some() {
+      let len = self.emails.as_ref().unwrap().len();
+      for (i, email) in self.emails.as_ref().unwrap().iter().enumerate() {
+        if i != len - 1 {
+          s.push_str(format!("{}{}", email, ", ").as_str());
+        } else {
+          s.push_str(email);
+        }
+      }
+    } else {
+      s.push_str("None");
+    }
+    s
+  }
+}
+```
+
+If you end up building something with this crate, let me know!
 
 ## License
 This crate is licensed under the **MIT License**. Details in the [LICENSE](LICENSE) file.
