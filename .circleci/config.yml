@@ -7,6 +7,7 @@ jobs:
       - image: cimg/rust:1.50.0
     steps:
       - checkout
+          path: ~/simple_tables
       - run: find .
       - run: cargo --version
       - run:
