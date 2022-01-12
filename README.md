@@ -215,7 +215,7 @@ Simply add the crate to your `cargo.toml`.
 
 ```toml
 [dependencies]
-simple_tables = "0.2.0"
+simple_tables = "0.2.1"
 ```
 
 You can see the crate on [crates.io](https://crates.io/crates/simple_tables)
