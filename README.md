@@ -1,10 +1,10 @@
 <img src="res/logo.png" style="display:block; margin-left:auto; margin-right:auto; width:500px; " />
 
-![CirlceCI](https://img.shields.io/circleci/build/github/Jomy10/simple_tables)
+[![CirlceCI](https://img.shields.io/circleci/build/github/Jomy10/simple_tables)](https://app.circleci.com/pipelines/github/Jomy10/simple_tables?branch=master)
 ![Language](https://img.shields.io/github/languages/top/Jomy10/simple_tables)
-![Licenses](https://img.shields.io/crates/l/simple_tables)
-![Crates.io](https://img.shields.io/crates/v/simple_tables)
-![Docs.rs](https://img.shields.io/docsrs/simple_tables)
+[![Licenses](https://img.shields.io/crates/l/simple_tables)](#license)
+[![Crates.io](https://img.shields.io/crates/v/simple_tables)](https://crates.io/crates/simple_tables)
+[![Docs.rs](https://img.shields.io/docsrs/simple_tables)](https://docs.rs/simple_tables/0.1.1/simple_tables/)
 
 Simple Tables is a rust crate for easily creating table structures. This is made easy using macros.
 
@@ -212,5 +212,10 @@ repository that will test all commits. If you add a new feature, make sure to al
 ## Documentation
 The documentation can be found [here](https://jomy10.github.io/simple_tables/simple_tables/index.html).
 
+It is also available on [docs.rs](https://docs.rs/simple_tables/0.1.1/simple_tables/), here you can also find 
+documentation of previous versions.
+
 ## License
-This crate is licensed under the MIT License. Details in the [LICENSE](LICENSE) file.
+This crate is licensed under the **MIT License**. Details in the [LICENSE](LICENSE) file.
+
+Alternatively, this crate can also be licensed under the [Apache 2.0-license](ALT_LICENSE).
