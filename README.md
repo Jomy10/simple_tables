@@ -188,12 +188,34 @@ let table_row = table.get_row(2).unwrap();
 assert_eq!(vec[1], table_row.clone());
 ```
 
+You can also get a row mutably using its uid using the `get_row_mut(index)` method.
+
+**Example**
+```rust
+let vec = vec![
+    MyTableRow { id: 1, name: "Swedish House Mafia".to_string() },
+    MyTableRow { id: 2, name: "Pink Floyd".to_string() },
+    MyTableRow { id: 3, name: "Nick Cave & The Bad Seeds".to_string() }
+];
+let vec_unedited = vec![
+    MyTableRow { id: 1, name: "Swedish House Mafia".to_string() },
+    MyTableRow { id: 2, name: "Pink Floyd".to_string() },
+    MyTableRow { id: 3, name: "Nick Cave".to_string() }
+];
+
+let table = MyTable::from_vec(&vec);
+let mut table2 = MyTable::from_vec(&vec_unedited);
+let row = table2.get_row_mut(3).unwrap();
+row.name =  format!("{} {}", row.name, "& The Bad Seeds");
+assert_eq!(table2.get_rows(), table.get_rows());
+```
+
 ## Installing
 Simply add the crate to your `cargo.toml`.
 
 ```toml
 [dependencies]
-simple_tables = "0.1.1"
+simple_tables = "0.2.0"
 ```
 
 You can see the crate on [crates.io](https://crates.io/crates/simple_tables)
