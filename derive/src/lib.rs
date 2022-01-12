@@ -107,7 +107,7 @@ pub fn table_row(_attrs: TokenStream, input: TokenStream) -> TokenStream {
 ///     email: String
 /// }
 ///
-/// #[table(rows = TableRow, uid = "id")] // Optional: add a uid field (has to match a field in TableRow)
+/// #[table(rows = TableRow)]
 /// struct Table {}
 /// ```
 #[proc_macro_attribute]

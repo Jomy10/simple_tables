@@ -2,11 +2,12 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/simple_tables/tables
+    working_directory: ~/simple_tables/tables/tables
     docker:
       - image: cimg/rust:1.50.0
     steps:
       - checkout
+      - run: find .
       - run: cargo --version
       - run:
           name: Run Tests
