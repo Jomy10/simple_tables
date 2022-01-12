@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/simple_tables/tables
     docker:
-      - image: cimg/rust:1.50.0
+      - image: cimg/rust:1.56.0
     steps:
       - checkout:
             path: ~/simple_tables
