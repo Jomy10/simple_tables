@@ -1,5 +1,7 @@
 //! Simple Tables Core
 
+pub mod error;
+
 // Trait
 pub trait TableRow {
     /// Returns a vector containing the names of the fields
@@ -108,6 +110,10 @@ pub trait Table<Row: TableRow> {
     // fn get_column_at<ColumnType>(&self, column: usize) -> Vec<ColumnType>;
     /// Returns the row at the index
     fn get_row_at(&self, i: usize) -> Option<&Row> { self.get_rows().get(i) }
+    /// Removes the row at the index and returns the row
+    fn rm_row_at(&mut self, i: usize) -> Row {
+        self.get_rows_mut().remove(i)
+    }
 
     // TODO
     // /// Sorts the rows based on a specific column
@@ -187,6 +193,28 @@ pub trait IdTable<UidType: PartialEq, Row: TableRow>: Table<Row> {
         });
     
         val
+    }
+    
+    /// Returns the index of the row with the uid. Will be None if there is no row with this uid.
+    fn get_row_index(&self, uid: UidType) -> Option<usize> {
+        let val: Option<usize> = self.get_rows().iter().enumerate().find_map(|(i, row)| {
+            if Self::get_id_from_row(row) == uid {
+                Some(i)
+            } else {
+                None
+            }
+        });
+        val
+    }
+    
+    /// Removes the row with the uid from the table and returns the row. Returns an error if there
+    /// is no table row with the uid.
+    fn rm_row(&mut self, uid: UidType) -> Result<Row, crate::error::TableError> {
+        if let Some(index) = self.get_row_index(uid) {
+            Ok(self.rm_row_at(index))
+        } else {
+            Err(crate::error::TableError { kind: crate::error::TableErrorKind::CouldNotRemove, message: "There is no table row with this uid".to_string() })
+        }
     }
     
     // TODO

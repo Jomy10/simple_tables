@@ -160,16 +160,62 @@ mod table_trait {
         assert_eq!(3, table.get_column_size(|row| row.name.clone()).unwrap());
         assert_eq!(4, table.get_column_size(|row| row.id).unwrap());
     }
+    
+    #[test]
+    fn rm_row_at() {
+        #[table_row]
+        struct TableRow {
+            id: i32,
+            name: String,
+        }
+        
+        impl PartialEq<Self> for TableRow {
+            fn eq(&self, other: &Self) -> bool {
+                self.id == other.id && self.name == other.name
+            }
+        }
+        
+        #[table(rows = TableRow)]
+        #[derive(Debug)]
+        struct MyTable {}
+        
+        impl PartialEq for MyTable {
+            fn eq(&self, other: &Self) -> bool {
+                let results: Vec<bool> = self.rows.iter().enumerate().map(|(i, row)| {
+                    return other.get_row_at(i).unwrap() == row;
+                }).collect();
+                return if results.contains(&false) {
+                    false
+                } else {
+                    true
+                }
+            }
+        }
+        
+        let vec: Vec<TableRow> = vec![
+            TableRow { id: 0, name: "Ritchie Blackmore".to_string() },
+            TableRow { id: 1, name: "The Rolling Stones".to_string() }
+        ];
+        let rm_should_be = TableRow { id: 0, name: "Ritchie Blackmore".to_string() };
+        let left = vec![TableRow { id: 1, name: "The Rolling Stones".to_string() }];
+        
+        let mut table: MyTable = MyTable::from_vec(&vec);
+        let left_in_table = MyTable::from_vec(&left);
+        let removed_row = table.rm_row_at(0);
+        
+        assert_eq!(removed_row, rm_should_be);
+        assert_eq!(table, left_in_table)
+    }
 }
 
 mod uid {
     use simple_tables::macros::table;
     use simple_tables::macros::table_row;
     use simple_tables::core::Table;
+    use simple_tables_core::IdTable;
     
     #[test]
     fn get_row() {
-        use simple_tables::IdTable;
         #[table_row]
         struct TableRow {
             id: i32,
@@ -198,7 +244,6 @@ mod uid {
     
     #[test]
     fn get_row_mut() {
-        use simple_tables::IdTable;
         
         #[table_row]
         struct TableRow {
@@ -229,7 +274,6 @@ mod uid {
     
     #[test]
     fn get_row_mut_can_edit() {
-        use simple_tables::IdTable;
         
         #[table_row]
         struct TableRow {
@@ -267,6 +311,48 @@ mod uid {
         let row = table2.get_row_mut(3).unwrap();
         row.name = "A".to_string();
         assert_eq!(table2.get_rows(), table.get_rows());
+    }
+    
+    #[test]
+    fn rm_row() {
+        #[table_row]
+        struct TableRow {
+            id: i32,
+            name: String,
+        }
+    
+        impl PartialEq<Self> for TableRow {
+            fn eq(&self, other: &Self) -> bool {
+                self.id == other.id && self.name == other.name
+            }
+        }
+    
+        #[table(rows = TableRow)]
+        #[derive(Debug, PartialEq)]
+        struct MyTable {}
+    
+        
+    
+        impl IdTable<i32, TableRow> for MyTable {
+            fn get_id_from_row(row: &TableRow) -> i32 {
+                row.id
+            }
+        }
+        
+        let vec: Vec<TableRow> = vec![
+            TableRow { id: 0, name: "Ritchie Blackmore".to_string() },
+            TableRow { id: 1, name: "The Rolling Stones".to_string() }
+        ];
+        let rm_should_be = TableRow { id: 0, name: "Ritchie Blackmore".to_string() };
+        let left_vec = vec![TableRow { id: 1, name: "The Rolling Stones".to_string() }];
+        
+        let mut table: MyTable = MyTable::from_vec(&vec);
+        let removed_row = table.rm_row_at(0);
+        
+        let table_left: MyTable = MyTable::from_vec(&left_vec);
+        
+        assert_eq!(rm_should_be, removed_row);
+        assert_eq!(table_left, table)
     }
 }
 

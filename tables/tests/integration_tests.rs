@@ -22,4 +22,5 @@
 
 mod table;
 mod table_row;
+mod error;
 // mod table_row;

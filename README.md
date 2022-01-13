@@ -21,6 +21,7 @@ Simple Tables is a rust crate for easily creating table structures. This is made
     - [Column and row count](#column-and-row-count)
   - [Tables with UID's](#tables-with-uids)
     - [Getting a row based on the uid](#getting-a-row-based-on-the-uid)
+- [Adding derive attributes](#adding-derive-attributes)
 - [Installing](#installing)
 - [Contributing](#contributing)
 - [Documentation](#documentation)
@@ -209,6 +210,16 @@ let mut table2 = MyTable::from_vec(&vec_unedited);
 let row = table2.get_row_mut(3).unwrap();
 row.name =  format!("{} {}", row.name, "& The Bad Seeds");
 assert_eq!(table2.get_rows(), table.get_rows());
+```
+
+## Adding derive attributes
+You can add derive attributes to your table, but you should put them beneath the `#[table]`.
+
+**Example**
+```rust
+#[table(MyTableRow)
+#[derive(PartialEq)]
+struct MyTable {}
 ```
 
 ## Installing

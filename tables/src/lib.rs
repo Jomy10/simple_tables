@@ -93,3 +93,5 @@ pub mod macros {
 pub use core::Table;
 pub use core::TableRow;
 pub use core::IdTable;
+
+pub use core::error;
