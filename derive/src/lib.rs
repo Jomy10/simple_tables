@@ -179,10 +179,8 @@ pub fn table(attrs: TokenStream, input: TokenStream) -> TokenStream {
             uid_code = quote!();
         }
         
-        let impl_to_string = quote!(
-            impl ToString for #struct_name {
-                fn to_string(&self) -> String {
-                    // The names of the fields
+        let to_string = quote!(
+            // The names of the fields
                     let field_names = dev_simple_tables_core_table_row_type::get_fields();
                     // All cells
                     let mut row_values: Vec<Vec<String>> = Vec::new();
@@ -243,7 +241,11 @@ pub fn table(attrs: TokenStream, input: TokenStream) -> TokenStream {
                         // Add horizontal line to bottom
                         cells.push_str(format!("\n{}", top_line).as_str());
                     });
-                    
+        );
+        let impl_to_string = quote!(
+            impl ToString for #struct_name {
+                fn to_string(&self) -> String {
+                    #to_string
                     format!("{}\n{}\n{}\n{}", top_line, headers, bottom_line, cells)
                 }
             }
@@ -257,7 +259,7 @@ pub fn table(attrs: TokenStream, input: TokenStream) -> TokenStream {
                 #uid_code
             }
             
-            type dev_simple_tables_core_table_row_type = #table_row_struct; // TODO: generate uid, then to ident
+            type dev_simple_tables_core_table_row_type = #table_row_struct; // TODO: append the name of the struct to this type to avoid collisions
             
             impl simple_tables::core::Table<#table_row_struct> for #struct_name {
                 fn new() -> #struct_name {
@@ -290,6 +292,14 @@ pub fn table(attrs: TokenStream, input: TokenStream) -> TokenStream {
             }
             
             #impl_to_string
+            
+            impl std::fmt::Debug for #struct_name {
+                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                    #to_string
+                    let output = format!("{}\n{}\n{}\n{}", top_line, headers, bottom_line, cells);
+                    write!(f, "{}", output)
+                }
+            }
         );
     
         TokenStream::from(output)

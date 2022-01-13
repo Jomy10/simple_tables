@@ -1,6 +1,6 @@
 [package]
 name = "simple_tables-derive"
-version = "0.2.1"
+version = "0.3.0-beta.2"
 edition = "2021"
 description = "Contains the procedural macros for the simple_tables crate"
 license = "MIT OR Apache-2.0"

@@ -176,7 +176,6 @@ mod table_trait {
         }
         
         #[table(rows = TableRow)]
-        #[derive(Debug)]
         struct MyTable {}
         
         impl PartialEq for MyTable {
@@ -328,7 +327,7 @@ mod uid {
         }
     
         #[table(rows = TableRow)]
-        #[derive(Debug, PartialEq)]
+        #[derive(PartialEq)]
         struct MyTable {}
     
         
@@ -419,4 +418,8 @@ mod to_string {
 +-------------------+---------------------+-------------------+";
         assert_eq!(ascii_table, table.to_string())
     }
+    
+    // TODO: test for Debug implementation
 }
+
+// TODO: Implement debug!

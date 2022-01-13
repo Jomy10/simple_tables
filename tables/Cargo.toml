@@ -1,6 +1,6 @@
 [package]
 name = "simple_tables"
-version = "0.2.1"
+version = "0.3.0-beta.2"
 edition = "2021"
 description = "An easy to use rust crate for creating table structures. Including macros for easily creating these table structures."
 license = "MIT OR Apache-2.0"

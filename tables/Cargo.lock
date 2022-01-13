@@ -22,7 +22,7 @@ dependencies = [
 
 [[package]]
 name = "simple_tables"
-version = "0.2.1"
+version = "0.3.0-beta.2"
 dependencies = [
  "simple_tables-core",
  "simple_tables-derive",
@@ -30,11 +30,11 @@ dependencies = [
 
 [[package]]
 name = "simple_tables-core"
-version = "0.2.1"
+version = "0.3.0-beta.2"
 
 [[package]]
 name = "simple_tables-derive"
-version = "0.2.1"
+version = "0.3.0-beta.2"
 dependencies = [
  "proc-macro2",
  "quote",
