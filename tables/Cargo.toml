@@ -1,6 +1,6 @@
 [package]
 name = "simple_tables"
-version = "0.3.0-beta.2"
+version = "0.3.0"
 edition = "2021"
 description = "An easy to use rust crate for creating table structures. Including macros for easily creating these table structures."
 license = "MIT OR Apache-2.0"
@@ -12,13 +12,11 @@ repository = "https://github.com/Jomy10/simple_tables"
 keywords = ["tables", "table", "macros", "macro", "proc_macro"]
 categories = ["data-structures", "visualization"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-# simple_tables-core = "0.2.1"
-simple_tables-core = { path = "../core" }
-# simple_tables-derive = "0.2.1"
-simple_tables-derive = { path = "../derive" }
+simple_tables-core = "0.3.0"
+# simple_tables-core = { path = "../core" }
+simple_tables-derive = "0.3.0"
+# simple_tables-derive = { path = "../derive" }
 
 # [dev-dependencies]
 # trybuild = "1.0.54"

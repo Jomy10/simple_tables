@@ -4,7 +4,7 @@
 ![Language](https://img.shields.io/badge/lang-Rust-B7410E)
 [![Licenses](https://img.shields.io/crates/l/simple_tables)](#license)
 [![Crates.io](https://img.shields.io/crates/v/simple_tables)](https://crates.io/crates/simple_tables)
-[![Docs.rs](https://img.shields.io/docsrs/simple_tables)](https://docs.rs/simple_tables/0.1.1/simple_tables/)
+[![Docs.rs](https://img.shields.io/docsrs/simple_tables)](https://docs.rs/simple_tables/latest/simple_tables/)
 
 Simple Tables is a rust crate for easily creating table structures. This is made easy using macros.
 
@@ -26,6 +26,7 @@ Simple Tables is a rust crate for easily creating table structures. This is made
 - [Contributing](#contributing)
 - [Documentation](#documentation)
 - [Use cases](#use-cases)
+- [Questions](#questions)
 - [License](#license)
 
 ## Overview
@@ -97,7 +98,7 @@ let populated_table = MyTable::from_vec(&vec);
 ```
 
 #### Get rows
-You can either get the rows directly using `table.rows` or using one of the getters: 
+You can get the rows using one of the getters:
 - `table.get_rows()`
 - `table.get_rows_mut()`
 - `table.get_row_at(index)`
@@ -116,7 +117,7 @@ struct MyTableRow2 {
 
 #[table(rows = TableRow)]
 struct MyTable2 {}
- 
+
 let vec: Vec<MyTableRow2> = vec![
   MyTableRow2{id: 1, name: String::from("Metallica")}, 
   MyTableRow2{id: 2, name: String::from("Slipknot")}
@@ -171,6 +172,10 @@ impl IdTable<u32, MyTableRow> for MyTable {
 
 **NOTE**: If your IDE complains saying `the trait bound MyTable: Table<MyTableRow> is not satisfied`, you can simply 
 ignore this. The `Table` trait is implemented in the `table` macro, but your IDE just doesn't know this.
+
+To get rid of these warnings, you will have to enable the `org.rust.cargo.evaluate.build.scripts` and `org.rust.macros.proc`
+experimental features. In IntelliJ, you can accomplish this by pressing `⇧⌘A` (macOs) or `⌃⇧A` (Linux/Windows) and searching
+for `Experimental Features`, then enabling the two before-mentioned features.
 
 #### Getting a row based on the uid
 
@@ -227,7 +232,7 @@ Simply add the crate to your `cargo.toml`.
 
 ```toml
 [dependencies]
-simple_tables = "0.2.1"
+simple_tables = "0.3.0"
 ```
 
 You can see the crate on [crates.io](https://crates.io/crates/simple_tables)
@@ -246,7 +251,7 @@ repository that will test all commits. If you add a new feature, make sure to al
 ## Documentation
 The documentation can be found [here](https://jomy10.github.io/simple_tables/simple_tables/index.html).
 
-It is also available on [docs.rs](https://docs.rs/simple_tables/0.1.1/simple_tables/), here you can also find 
+It is also available on [docs.rs](https://docs.rs/simple_tables/latest/simple_tables/), here you can also find 
 documentation of previous versions.
 
 ## Use cases
@@ -367,6 +372,9 @@ impl ToString for Emails {
 ```
 
 If you end up building something with this crate, let me know!
+
+## Questions?
+Feel free to open an issue or contact me directly with any questions.
 
 ## License
 This crate is licensed under the **MIT License**. Details in the [LICENSE](LICENSE) file.
