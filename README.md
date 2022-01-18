@@ -8,6 +8,8 @@
 
 Simple Tables is a rust crate for easily creating table structures. This is made easy using macros.
 
+This crate is actively maintained and everything is well documented.
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -18,6 +20,7 @@ Simple Tables is a rust crate for easily creating table structures. This is made
     - [Get rows](#get-rows)
     - [Get columns](#get-columns)
     - [Inserting rows](#inserting-rows)
+    - [Removing rows](#removing-rows)
     - [Column and row count](#column-and-row-count)
   - [Tables with UID's](#tables-with-uids)
     - [Getting a row based on the uid](#getting-a-row-based-on-the-uid)
@@ -51,6 +54,12 @@ struct MyTable {}
 ```
 
 These macros will implement the `TableRow` and `Table` trait respectively. You could also implement these manually.
+
+**NOTE**: If you use **IntelliJ**, I highly encourage you to enable the `org.rust.cargo.evaluate.build.scripts` and `org.rust.macros.proc`
+experimental features. You can accomplish this by pressing `⇧⌘A` (macOs) or `⌃⇧A` (Linux/Windows) and searching
+for `Experimental Features`, then enabling the two before-mentioned features.
+
+I don't know if rust-analyzer has this feature enabled by default, so I don't know what the state is in other IDE's.
 
 ### Functions
 The traits `TableRow` and `Table` define a collection a functions, most of them with default implementations. Using the
@@ -129,7 +138,7 @@ assert_eq!(vec![1,2], ids);
 
 #### Inserting rows
 
-**Examples**
+**Example**
 ```rust
 let row = MyTableRow { id: 4, name: "Pink Floyd", email: "pink@floyd.com", address: "England"};
 // Appending the row to the end of the table
@@ -138,6 +147,28 @@ table.push(row);
 table.insert_top(row);
 // Inserting a row in the second position 
 table.insert(2, row);
+```
+
+#### Removing rows
+You can use the `rm_row_at(index)` method to remove the row with the specified index, or use the `rm_row(id)` to remove
+a row for a table with a [uid](#tables-with-uids).
+
+**Examples**
+```rust
+let row = MyTableRow { id: 4, name: "Pink Floyd", email: "pink@floyd.com", address: "England"};
+// assume table was empty before this
+table.push(row);
+table.rm_row_at(0);
+assert_eq!(vec![], table.get_rows());
+```
+
+And for a table with a uid:
+```rust
+let row = MyTableRow { id: 4, name: "Pink Floyd", email: "pink@floyd.com", address: "England"};
+// assume table was empty before this
+table.push(row);
+table.rm_row(4);
+assert_eq!(vec![], table.get_rows());
 ```
 
 #### Column and row count
@@ -216,6 +247,10 @@ let row = table2.get_row_mut(3).unwrap();
 row.name =  format!("{} {}", row.name, "& The Bad Seeds");
 assert_eq!(table2.get_rows(), table.get_rows());
 ```
+
+You can get a row's index using `get_row_index(id)`.
+
+You can remove a row with a uid using `rm_row(id)`.
 
 ## Adding derive attributes
 You can add derive attributes to your table, but you should put them beneath the `#[table]`.
